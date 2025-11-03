@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบสถานะการสมัคร</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 20px;
+            font-weight: normal;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .search-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 40px 30px;
+            margin-bottom: 20px;
+        }
+        .page-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: normal;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #999;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            background-color: #34495e;
+            color: white;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #2c3e50;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #333;
+        }
+        .result-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+        }
+        .result-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .result-header h2 {
+            font-size: 18px;
+            color: #333;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 14px;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .status-pending {
+            background-color: #f39c12;
+            color: white;
+        }
+        .status-approved {
+            background-color: #27ae60;
+            color: white;
+        }
+        .status-rejected {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .info-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            width: 150px;
+            font-size: 14px;
+            color: #666;
+            flex-shrink: 0;
+        }
+        .info-value {
+            font-size: 14px;
+            color: #333;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* สำหรับมือถือ */
+        @media screen and (max-width: 768px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .container {
+                margin: 20px auto;
+            }
+            
+            .search-container,
+            .result-container {
+                padding: 30px 20px;
+            }
+            
+            .page-title,
+            .result-header h2 {
+                font-size: 16px;
+            }
+            
+            .form-group label {
+                font-size: 13px;
+            }
+            
+            .form-group input {
+                padding: 9px;
+                font-size: 13px;
+            }
+            
+            .btn {
+                padding: 11px;
+                font-size: 14px;
+            }
+            
+            .info-row {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            
+            .info-value {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ตรวจสอบสถานะการสมัคร</h1>
+    </div>
+    
+    <div class="container">
+        <!-- ฟอร์มค้นหา -->
+        <div id="searchForm" class="search-container">
+            <h2 class="page-title">กรอกข้อมูลเพื่อตรวจสอบสถานะ</h2>
+            <div class="form-group">
+                <label>เบอร์โทรศัพท์</label>
+                <input type="tel" id="phone" placeholder="กรอกเบอร์โทรศัพท์">
+            </div>
+            <div class="form-group">
+                <label>อีเมล</label>
+                <input type="email" id="email" placeholder="กรอกอีเมล">
+            </div>
+            <button class="btn" onclick="checkStatus()">ตรวจสอบสถานะ</button>
+            <a href="register.html" class="back-link">← กลับหน้าแรก</a>
+        </div>
+
+        <!-- ผลการค้นหา -->
+        <div id="resultContainer" class="result-container hidden">
+            <div class="result-header">
+                <h2>ข้อมูลการสมัคร</h2>
+                <div class="status-badge status-pending" id="statusBadge">รอการตรวจสอบ</div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-row">
+                    <div class="info-label">ชื่อ-นามสกุล:</div>
+                    <div class="info-value" id="fullName">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ระดับชั้น:</div>
+                    <div class="info-value" id="level">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">แผนก:</div>
+                    <div class="info-value" id="department">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">เบอร์โทรศัพท์:</div>
+                    <div class="info-value" id="phoneDisplay">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">อีเมล:</div>
+                    <div class="info-value" id="email">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">วันที่สมัคร:</div>
+                    <div class="info-value" id="registerDate">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">สถานะ:</div>
+                    <div class="info-value" id="statusText">รอการตรวจสอบ</div>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="backToSearch()">ค้นหาใหม่</button>
+        </div>
+    </div>
+
+    <script>
+        function checkStatus() {
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            if (!phone || !email) {
+                alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                return;
+            }
+
+            // จำลองข้อมูล (ในระบบจริงจะดึงจาก API)
+            const mockData = {
+                fullName: 'สมชาย ใจดี',
+                level: 'ปวช.1',
+                department: 'คอมพิวเตอร์',
+                phone: phone,
+                email: email,
+                registerDate: '1 พฤศจิกายน 2567',
+                status: 'pending' // pending, approved, rejected
+            };
+
+            // แสดงผลลัพธ์
+            document.getElementById('fullName').textContent = mockData.fullName;
+            document.getElementById('level').textContent = mockData.level;
+            document.getElementById('department').textContent = mockData.department;
+            document.getElementById('phoneDisplay').textContent = mockData.phone;
+            document.getElementById('email').textContent = mockData.email;
+            document.getElementById('registerDate').textContent = mockData.registerDate;
+
+            const statusBadge = document.getElementById('statusBadge');
+            const statusText = document.getElementById('statusText');
+
+            if (mockData.status === 'pending') {
+                statusBadge.className = 'status-badge status-pending';
+                statusBadge.textContent = 'รอการตรวจสอบ';
+                statusText.textContent = 'รอการตรวจสอบ';
+            } else if (mockData.status === 'approved') {
+                statusBadge.className = 'status-badge status-approved';
+                statusBadge.textContent = 'อนุมัติแล้ว';
+                statusText.textContent = 'อนุมัติแล้ว';
+            } else if (mockData.status === 'rejected') {
+                statusBadge.className = 'status-badge status-rejected';
+                statusBadge.textContent = 'ไม่อนุมัติ';
+                statusText.textContent = 'ไม่อนุมัติ';
+            }
+
+            document.getElementById('searchForm').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+        }
+
+        function backToSearch() {
+            document.getElementById('resultContainer').classList.add('hidden');
+            document.getElementById('searchForm').classList.remove('hidden');
+            document.getElementById('phone').value = '';
+            document.getElementById('email').value = '';
+        }
+    </script>
+</body>
+</html>
