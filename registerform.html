@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มสมัครเรียน</title>
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 20px;
+            font-weight: normal;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .form-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 40px 30px;
+        }
+        .step-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: normal;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #999;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #34495e;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2c3e50;
+        }
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        .hidden {
+            display: none;
+        }
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .success-message h2 {
+            font-size: 20px;
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        .success-message p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .back-home {
+            margin-top: 25px;
+        }
+        .back-home a {
+            color: #34495e;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-home a:hover {
+            color: #2c3e50;
+        }
+
+        /* สำหรับมือถือ */
+        @media screen and (max-width: 768px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .container {
+                margin: 20px auto;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .step-title {
+                font-size: 16px;
+            }
+            
+            .form-group label {
+                font-size: 13px;
+            }
+            
+            .form-group select,
+            .form-group input {
+                padding: 9px;
+                font-size: 13px;
+            }
+            
+            .btn {
+                padding: 11px;
+                font-size: 14px;
+            }
+            
+            .success-icon {
+                font-size: 50px;
+            }
+            
+            .success-message h2 {
+                font-size: 18px;
+            }
+            
+            .success-message p {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>แบบฟอร์มสมัครเรียน</h1>
+    </div>
+    <center><a href="register.html" style="text-decoration:none">กลับหน้าแรก</a></center>
+    <div class="container">
+        <div class="form-container">
+            <!-- ขั้นตอนที่ 1: เลือกระดับชั้น -->
+            <div id="step1">
+                <h2 class="step-title">ขั้นตอนที่ 1: เลือกระดับชั้น</h2>
+                <div class="form-group">
+                    <label>เลือกระดับชั้นที่ต้องการสมัคร</label>
+                    <select id="level">
+                        <option value="">-- กรุณาเลือก --</option>
+                        <option value="ปวช.1">ปวช.1</option>
+                        <option value="ปวช.2">ปวช.2</option>
+                        <option value="ปวช.3">ปวช.3</option>
+                        <option value="ปวส.1">ปวส.1</option>
+                        <option value="ปวส.2">ปวส.2</option>
+                        <option value="ปวส.3">ปวส.3</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="goToStep2()">ถัดไป</button>
+                </div>
+            </div>
+
+            <!-- ขั้นตอนที่ 2: กรอกข้อมูลผู้สมัคร -->
+            <div id="step2" class="hidden">
+                <h2 class="step-title">ขั้นตอนที่ 2: กรอกข้อมูลผู้สมัคร</h2>
+                <div class="form-group">
+                    <label>ชื่อ</label>
+                    <input type="text" id="firstName" placeholder="กรอกชื่อ">
+                </div>
+                <div class="form-group">
+                    <label>นามสกุล</label>
+                    <input type="text" id="lastName" placeholder="กรอกนามสกุล">
+                </div>
+                <div class="form-group">
+                    <label>เบอร์โทรศัพท์</label>
+                    <input type="tel" id="phone" placeholder="กรอกเบอร์โทร">
+                </div>
+                <div class="form-group">
+                    <label>อีเมล</label>
+                    <input type="email" id="email" placeholder="กรอกอีเมล">
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="backToStep1()">ย้อนกลับ</button>
+                    <button class="btn btn-primary" onclick="goToStep3()">ถัดไป</button>
+                </div>
+            </div>
+
+            <!-- ขั้นตอนที่ 3: เลือกแผนก -->
+            <div id="step3" class="hidden">
+                <h2 class="step-title">ขั้นตอนที่ 3: เลือกแผนก</h2>
+                <div class="form-group">
+                    <label>เลือกแผนกที่ต้องการเรียน</label>
+                    <select id="department">
+                        <option value="">-- กรุณาเลือก --</option>
+                        <option value="ช่างยนต์">ช่างยนต์</option>
+                        <option value="ช่างไฟฟ้า">ช่างไฟฟ้า</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="backToStep2()">ย้อนกลับ</button>
+                    <button class="btn btn-primary" onclick="submitForm()">ยืนยันการสมัคร</button>
+                </div>
+            </div>
+
+            <!-- หน้าเสร็จสิ้น -->
+            <div id="success" class="hidden">
+                <div class="success-message">
+                    <div class="success-icon">✓</div>
+                    <h2>สมัครเรียนเสร็จสิ้น</h2>
+                    <p>ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว<br>กรุณารอการตรวจสอบข้อมูลจากเจ้าหน้าที่</p>
+                    <div class="back-home">
+                        <a href="index.html">← กลับหน้าแรก</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/supabase.js"></script>
+    <script>
+        function goToStep2() {
+            const level = document.getElementById('level').value;
+            if (!level) {
+                alert('กรุณาเลือกระดับชั้น');
+                return;
+            }
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }
+
+        function backToStep1() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step1').classList.remove('hidden');
+        }
+
+        function goToStep3() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            if (!firstName || !lastName || !phone || !email) {
+                alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                return;
+            }
+
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
+
+        function backToStep2() {
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }
+
+        function submitForm() {
+            const department = document.getElementById('department').value;
+            if (!department) {
+                alert('กรุณาเลือกแผนก');
+                return;
+            }
+
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('success').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

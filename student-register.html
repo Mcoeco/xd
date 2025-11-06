@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครเรียน - ระบบจัดการนักเรียนออนไลน์</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 20px;
+            font-weight: normal;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .button-section {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .back-button {
+            margin-bottom: 20px;
+        }
+        .back-link {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #333;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            background-color: #34495e;
+            color: white;
+        }
+        .btn:hover {
+            background-color: #2c3e50;
+        }
+        .content-section {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+        }
+        .content-section h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: normal;
+            text-align: center;
+        }
+        .step {
+            margin-bottom: 25px;
+        }
+        .step h3 {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .step p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .note {
+            color: #666;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .container {
+                margin: 20px auto;
+            }
+            
+            .button-section {
+                padding: 20px 15px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 11px 20px;
+                font-size: 13px;
+            }
+            
+            .content-section {
+                padding: 20px 15px;
+            }
+            
+            .content-section h2 {
+                font-size: 16px;
+            }
+            
+            .step h3 {
+                font-size: 14px;
+            }
+            
+            .step p {
+                font-size: 13px;
+            }
+            
+            .note {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    
+    <div class="container">
+        <div class="button-section">
+            <div class="back-button">
+                <a href="index.html" class="back-link">← กลับหน้าแรก</a>
+            </div>
+            <div class="button-group">
+                <a href="registerform.html" style="text-decoration:none"><button class="btn">สมัครเรียน</button></a>
+                <a href="check.html" style="text-decoration:none"><button class="btn">ตรวจสอบสถานะการสมัครเรียน</button></a>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>ขั้นตอนการรับสมัคร</h2>
+            
+            <div class="step">
+                <h3>ขั้นตอนที่ 1 กรอกข้อมูลผู้สมัคร</h3>
+                <p>กรอกข้อมูลส่วนตัวและคุณสมบัติของผู้สมัครผ่านระบบรับสมัครออนไลน์ โดยระบุรหัสประจำตัวประชาชน และ วัน เดือน ปี เกิด เพื่อตรวจสอบข้อมูลผู้สมัครเรียน</p>
+                <p class="note">หมายเหตุ : นักศึกษาที่ไม่สามารถสมัครเรียนผ่านระบบออนไลน์ได้ ให้ติดต่อที่สถานศึกษาที่ต้องการสมัครเรียนด้วยตนเอง</p>
+            </div>
+            
+            <div class="step">
+                <h3>ขั้นตอนที่ 2 รอการตรวจสอบ</h3>
+                <p>เมื่อการสมัครผ่านระบบรับสมัครออนไลน์เสร็จสมบูรณ์แล้วให้ผู้สมัคร รอผู้ดูแลตรวจสอบและอนุมัติ</p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/supabase.js"></script>
+</body>
+</html>
