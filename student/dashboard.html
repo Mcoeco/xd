@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลนักเรียน</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">📋</div>
+                    <span class="menu-text">ข้อมูลส่วนตัว</span>
+                </div>
+            </a>
+            <a href="edit-profile.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">✏️</div>
+                    <span class="menu-text">แก้ไขข้อมูล</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="leave-request.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">ขอลา</span>
+                </div>
+            </a>
+            <a href="../student-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">ข้อมูลนักเรียน</h2>
+                <div class="info-row">
+                    <div class="info-label">ชื่อ:</div>
+                    <div class="info-value">สมชาย</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">นามสกุล:</div>
+                    <div class="info-value">ใจดี</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">รหัสนักเรียน:</div>
+                    <div class="info-value">65010001</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ระดับชั้น:</div>
+                    <div class="info-value">ปวช.1</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">แผนก:</div>
+                    <div class="info-value">คอมพิวเตอร์</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">เบอร์โทรศัพท์:</div>
+                    <div class="info-value">0812345678</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">อีเมล:</div>
+                    <div class="info-value">somchai@email.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

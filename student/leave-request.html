@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขอลา</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .leave-form {
+            max-width: 600px;
+        }
+        
+        .leave-history {
+            margin-top: 40px;
+        }
+        
+        .leave-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .leave-table th,
+        .leave-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .leave-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .status-approved {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .status-rejected {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .leave-table {
+                font-size: 14px;
+            }
+            
+            .leave-table th,
+            .leave-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📋</div>
+                    <span class="menu-text">ข้อมูลส่วนตัว</span>
+                </div>
+            </a>
+            <a href="edit-profile.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">✏️</div>
+                    <span class="menu-text">แก้ไขข้อมูล</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="grades.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📊</div>
+                    <span class="menu-text">คะแนน</span>
+                </div>
+            </a>
+            <a href="leave-request.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">ขอลา</span>
+                </div>
+            </a>
+            <a href="../student-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">ยื่นคำขอลา</h2>
+                <form class="leave-form">
+                    <div class="form-group">
+                        <label>ประเภทการลา</label>
+                        <select>
+                            <option>ลาป่วย</option>
+                            <option>ลากิจ</option>
+                            <option>ลาพักร้อน</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>วันที่เริ่มต้น</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>วันที่สิ้นสุด</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>เหตุผล</label>
+                        <input type="text" placeholder="กรอกเหตุผลในการลา">
+                    </div>
+                    <button type="button" class="btn" onclick="submitLeave()">ยื่นคำขอ</button>
+                </form>
+                
+                <div class="leave-history">
+                    <h2 class="content-title">ประวัติการลา</h2>
+                    <table class="leave-table">
+                        <thead>
+                            <tr>
+                                <th>วันที่</th>
+                                <th>ประเภท</th>
+                                <th>เหตุผล</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10-12/01/2568</td>
+                                <td>ลาป่วย</td>
+                                <td>ไข้หวัด</td>
+                                <td class="status-approved">อนุมัติ</td>
+                            </tr>
+                            <tr>
+                                <td>15/01/2568</td>
+                                <td>ลากิจ</td>
+                                <td>ติดธุระส่วนตัว</td>
+                                <td class="status-pending">รอพิจารณา</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+    <script>
+        function submitLeave() {
+            alert('ยื่นคำขอลาเรียบร้อยแล้ว รอการอนุมัติจากครู');
+        }
+    </script>
+</body>
+</html>

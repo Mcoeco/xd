@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขข้อมูลนักเรียน</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📋</div>
+                    <span class="menu-text">ข้อมูลส่วนตัว</span>
+                </div>
+            </a>
+            <a href="edit-profile.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">✏️</div>
+                    <span class="menu-text">แก้ไขข้อมูล</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="grades.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📊</div>
+                    <span class="menu-text">คะแนน</span>
+                </div>
+            </a>
+            <a href="leave-request.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">ขอลา</span>
+                </div>
+            </a>
+            <a href="../student-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">แก้ไขข้อมูลนักเรียน</h2>
+                <form>
+                    <div class="form-group">
+                        <label>ชื่อ</label>
+                        <input type="text" value="สมชาย">
+                    </div>
+                    <div class="form-group">
+                        <label>นามสกุล</label>
+                        <input type="text" value="ใจดี">
+                    </div>
+                    <div class="form-group">
+                        <label>เบอร์โทรศัพท์</label>
+                        <input type="tel" value="0812345678">
+                    </div>
+                    <div class="form-group">
+                        <label>อีเมล</label>
+                        <input type="email" value="somchai@email.com">
+                    </div>
+                    <button type="button" class="btn" onclick="saveData()">บันทึกข้อมูล</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/menu.js"></script>
+    <script>
+        function saveData() {
+            alert('บันทึกข้อมูลเรียบร้อยแล้ว');
+        }
+    </script>
+</body>
+</html>
