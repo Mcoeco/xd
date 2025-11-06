@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงาน</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .report-section {
+            margin-bottom: 30px;
+        }
+        
+        .report-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .report-table th,
+        .report-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .report-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .report-table {
+                font-size: 14px;
+            }
+            
+            .report-table th,
+            .report-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🏠</div>
+                    <span class="menu-text">หน้าหลัก</span>
+                </div>
+            </a>
+            <a href="students.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <span class="menu-text">จัดการนักเรียน</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="leave-approval.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">อนุมัติการลา</span>
+                </div>
+            </a>
+            <a href="reports.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">📈</div>
+                    <span class="menu-text">รายงาน</span>
+                </div>
+            </a>
+            <a href="../teacher-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">รายงานสรุป</h2>
+                
+                <div class="report-section">
+                    <h3 class="report-title">สรุปการเข้าเรียนประจำเดือน</h3>
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>ระดับชั้น</th>
+                                <th>จำนวนนักเรียน</th>
+                                <th>มาเรียน (%)</th>
+                                <th>ขาดเรียน (%)</th>
+                                <th>ลา (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ปวช.1</td>
+                                <td>45</td>
+                                <td>92%</td>
+                                <td>5%</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>ปวช.2</td>
+                                <td>42</td>
+                                <td>88%</td>
+                                <td>8%</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>ปวช.3</td>
+                                <td>38</td>
+                                <td>85%</td>
+                                <td>10%</td>
+                                <td>5%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="report-section">
+                    <h3 class="report-title">นักเรียนที่ขาดเรียนบ่อย</h3>
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>รหัสนักเรียน</th>
+                                <th>ชื่อ-นามสกุล</th>
+                                <th>ระดับชั้น</th>
+                                <th>จำนวนครั้งที่ขาด</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>65010015</td>
+                                <td>สมปอง ขาดเรียน</td>
+                                <td>ปวช.2</td>
+                                <td>12 ครั้ง</td>
+                            </tr>
+                            <tr>
+                                <td>65010028</td>
+                                <td>สมศรี ไม่มา</td>
+                                <td>ปวช.3</td>
+                                <td>10 ครั้ง</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

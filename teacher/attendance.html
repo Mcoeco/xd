@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เช็คชื่อ</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .date-filter {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .date-filter label {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .date-filter input[type="date"] {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+        
+        .date-filter .btn {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+        
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .attendance-table th,
+        .attendance-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .attendance-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .status-select {
+            padding: 6px 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+
+        @media screen and (max-width: 768px) {
+            .date-filter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .date-filter input[type="date"],
+            .date-filter .btn {
+                width: 100%;
+            }
+            
+            .attendance-table {
+                font-size: 14px;
+            }
+            
+            .attendance-table th,
+            .attendance-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🏠</div>
+                    <span class="menu-text">หน้าหลัก</span>
+                </div>
+            </a>
+            <a href="students.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <span class="menu-text">จัดการนักเรียน</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="leave-approval.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">อนุมัติการลา</span>
+                </div>
+            </a>
+            <a href="reports.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📈</div>
+                    <span class="menu-text">รายงาน</span>
+                </div>
+            </a>
+            <a href="../teacher-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">เช็คชื่อนักเรียน</h2>
+                
+                <!-- เพิ่มตัวกรองวันที่เพื่อดูและแก้ไขข้อมูลย้อนหลัง -->
+                <div class="date-filter">
+                    <label>เลือกวันที่:</label>
+                    <input type="date" id="attendanceDate" value="2025-01-15">
+                    <button class="btn" onclick="loadAttendance()">โหลดข้อมูล</button>
+                </div>
+                
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>รหัสนักเรียน</th>
+                            <th>ชื่อ-นามสกุล</th>
+                            <th>ระดับชั้น</th>
+                            <th>สถานะ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTableBody">
+                        <tr>
+                            <td>65010001</td>
+                            <td>สมชาย ใจดี</td>
+                            <td>ปวช.1</td>
+                            <td>
+                                <select class="status-select">
+                                    <option value="present" selected>มาเรียน</option>
+                                    <option value="absent">ขาดเรียน</option>
+                                    <option value="late">มาสาย</option>
+                                    <option value="leave">ลา</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>65010002</td>
+                            <td>สมหญิง รักเรียน</td>
+                            <td>ปวช.1</td>
+                            <td>
+                                <select class="status-select">
+                                    <option value="present" selected>มาเรียน</option>
+                                    <option value="absent">ขาดเรียน</option>
+                                    <option value="late">มาสาย</option>
+                                    <option value="leave">ลา</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>65010003</td>
+                            <td>สมศักดิ์ ขยัน</td>
+                            <td>ปวช.2</td>
+                            <td>
+                                <select class="status-select">
+                                    <option value="present" selected>มาเรียน</option>
+                                    <option value="absent">ขาดเรียน</option>
+                                    <option value="late">มาสาย</option>
+                                    <option value="leave">ลา</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn" style="margin-top: 20px;" onclick="saveAttendance()">บันทึกการเช็คชื่อ</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+    <script>
+        function loadAttendance() {
+            const selectedDate = document.getElementById('attendanceDate').value;
+            alert('โหลดข้อมูลการเช็คชื่อวันที่: ' + selectedDate);
+            // ในระบบจริงจะดึงข้อมูลจากฐานข้อมูลตามวันที่ที่เลือก
+        }
+        
+        function saveAttendance() {
+            const selectedDate = document.getElementById('attendanceDate').value;
+            alert('บันทึกการเช็คชื่อวันที่ ' + selectedDate + ' เรียบร้อยแล้ว');
+        }
+        
+        // ตั้งค่าวันที่เป็นวันปัจจุบัน
+        document.getElementById('attendanceDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>

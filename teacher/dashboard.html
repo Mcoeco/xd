@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าหลัก - ครู</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #e67e22;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media screen and (max-width: 768px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">🏠</div>
+                    <span class="menu-text">หน้าหลัก</span>
+                </div>
+            </a>
+            <a href="students.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <span class="menu-text">จัดการนักเรียน</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="grades.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📊</div>
+                    <span class="menu-text">จัดการคะแนน</span>
+                </div>
+            </a>
+            <a href="leave-approval.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">อนุมัติการลา</span>
+                </div>
+            </a>
+            <a href="reports.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📈</div>
+                    <span class="menu-text">รายงาน</span>
+                </div>
+            </a>
+            <a href="../teacher-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">ภาพรวมระบบ</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-label">จำนวนนักเรียนทั้งหมด</div>
+                        <div class="stat-number">156</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">มาเรียนวันนี้</div>
+                        <div class="stat-number">142</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">ขาดเรียนวันนี้</div>
+                        <div class="stat-number">8</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">รอการอนุมัติ</div>
+                        <div class="stat-number">6</div>
+                    </div>
+                </div>
+                
+                <h2 class="content-title">ข้อมูลครู</h2>
+                <div class="info-row">
+                    <div class="info-label">ชื่อ:</div>
+                    <div class="info-value">อาจารย์สมหญิง</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">นามสกุล:</div>
+                    <div class="info-value">ใจเย็น</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">รหัสครู:</div>
+                    <div class="info-value">T001</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">แผนก:</div>
+                    <div class="info-value">คอมพิวเตอร์</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">เบอร์โทรศัพท์:</div>
+                    <div class="info-value">0898765432</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">อีเมล:</div>
+                    <div class="info-value">teacher@email.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

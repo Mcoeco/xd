@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อนุมัติการลา</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .leave-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .leave-table th,
+        .leave-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .leave-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .action-btn {
+            padding: 6px 12px;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .approve-btn {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .approve-btn:hover {
+            background-color: #229954;
+        }
+        
+        .reject-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .reject-btn:hover {
+            background-color: #c0392b;
+        }
+
+        @media screen and (max-width: 768px) {
+            .leave-table {
+                font-size: 14px;
+            }
+            
+            .leave-table th,
+            .leave-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🏠</div>
+                    <span class="menu-text">หน้าหลัก</span>
+                </div>
+            </a>
+            <a href="students.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <span class="menu-text">จัดการนักเรียน</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="leave-approval.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">อนุมัติการลา</span>
+                </div>
+            </a>
+            <a href="reports.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📈</div>
+                    <span class="menu-text">รายงาน</span>
+                </div>
+            </a>
+            <a href="../teacher-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">คำขอลาที่รอการอนุมัติ</h2>
+                <table class="leave-table">
+                    <thead>
+                        <tr>
+                            <th>รหัสนักเรียน</th>
+                            <th>ชื่อ-นามสกุล</th>
+                            <th>วันที่ลา</th>
+                            <th>ประเภท</th>
+                            <th>เหตุผล</th>
+                            <th>การจัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>65010001</td>
+                            <td>สมชาย ใจดี</td>
+                            <td>16-17/01/2568</td>
+                            <td>ลาป่วย</td>
+                            <td>ไข้หวัด</td>
+                            <td>
+                                <button class="action-btn approve-btn" onclick="approveLeave(1)">อนุมัติ</button>
+                                <button class="action-btn reject-btn" onclick="rejectLeave(1)">ไม่อนุมัติ</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>65010002</td>
+                            <td>สมหญิง รักเรียน</td>
+                            <td>18/01/2568</td>
+                            <td>ลากิจ</td>
+                            <td>ติดธุระส่วนตัว</td>
+                            <td>
+                                <button class="action-btn approve-btn" onclick="approveLeave(2)">อนุมัติ</button>
+                                <button class="action-btn reject-btn" onclick="rejectLeave(2)">ไม่อนุมัติ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+    <script>
+        function approveLeave(id) {
+            alert('อนุมัติการลาเรียบร้อยแล้ว');
+        }
+        
+        function rejectLeave(id) {
+            alert('ไม่อนุมัติการลา');
+        }
+    </script>
+</body>
+</html>

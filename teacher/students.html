@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดการนักเรียน</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .students-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .students-table th,
+        .students-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .students-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .action-btn {
+            padding: 6px 12px;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            background-color: #34495e;
+            color: white;
+            margin-right: 5px;
+        }
+        
+        .action-btn:hover {
+            background-color: #2c3e50;
+        }
+
+        @media screen and (max-width: 768px) {
+            .students-table {
+                font-size: 14px;
+            }
+            
+            .students-table th,
+            .students-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>ระบบจัดการนักเรียนออนไลน์</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <a href="dashboard.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🏠</div>
+                    <span class="menu-text">หน้าหลัก</span>
+                </div>
+            </a>
+            <a href="students.html" style="text-decoration:none">
+                <div class="menu-item active">
+                    <div class="menu-icon">👥</div>
+                    <span class="menu-text">จัดการนักเรียน</span>
+                </div>
+            </a>
+            <a href="attendance.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <span class="menu-text">เช็คชื่อ</span>
+                </div>
+            </a>
+            <a href="leave-approval.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📝</div>
+                    <span class="menu-text">อนุมัติการลา</span>
+                </div>
+            </a>
+            <a href="reports.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">📈</div>
+                    <span class="menu-text">รายงาน</span>
+                </div>
+            </a>
+            <a href="../teacher-login.html" style="text-decoration:none">
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <span class="menu-text">ออกจากระบบ</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="content-box">
+                <h2 class="content-title">รายชื่อนักเรียน</h2>
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th>รหัสนักเรียน</th>
+                            <th>ชื่อ-นามสกุล</th>
+                            <th>ระดับชั้น</th>
+                            <th>แผนก</th>
+                            <th>ดูข้อมูล</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>65010001</td>
+                            <td>สมชาย ใจดี</td>
+                            <td>ปวช.1</td>
+                            <td>ช่างยนต์</td>
+                            <td>
+                                <button class="action-btn" onclick="viewStudent(1)">ดูข้อมูล</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>65010002</td>
+                            <td>สมหญิง รักเรียน</td>
+                            <td>ปวช.1</td>
+                            <td>ช่างยนต์</td>
+                            <td>
+                                <button class="action-btn" onclick="viewStudent(2)">ดูข้อมูล</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>65010003</td>
+                            <td>สมศักดิ์ ขยัน</td>
+                            <td>ปวช.2</td>
+                            <td>ช่างไฟฟ้า</td>
+                            <td>
+                                <button class="action-btn" onclick="viewStudent(3)">ดูข้อมูล</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/supabase.js"></script>
+    <script src="../js/menu.js"></script>
+    <script>
+        function viewStudent(id) {
+            alert('ดูข้อมูลนักเรียน ID: ' + id);
+        }
+    </script>
+</body>
+</html>
